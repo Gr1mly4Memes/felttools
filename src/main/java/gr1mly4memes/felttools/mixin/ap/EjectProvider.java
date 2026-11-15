@@ -1,0 +1,42 @@
+package gr1mly4memes.felttools.mixin.ap;
+
+import gr1mly4memes.felttools.mixin.MixinTools;
+import java.util.Collections;
+import java.util.Set;
+import javax.annotation.processing.AbstractProcessor;
+import javax.annotation.processing.ProcessingEnvironment;
+import javax.annotation.processing.RoundEnvironment;
+import javax.lang.model.SourceVersion;
+import javax.lang.model.element.TypeElement;
+import org.spongepowered.asm.util.logging.MessageRouter;
+
+public class EjectProvider extends AbstractProcessor {
+
+    static {
+        try {
+            MessageRouter.setMessager(new StdoutMessenger());
+        } catch (NoClassDefFoundError ignored) {
+        }
+    }
+
+    @Override
+    public synchronized void init(ProcessingEnvironment processingEnv) {
+        super.init(processingEnv);
+        MixinTools.setup();
+    }
+
+    @Override
+    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+        return true;
+    }
+
+    @Override
+    public Set<String> getSupportedAnnotationTypes() {
+        return Collections.emptySet();
+    }
+
+    @Override
+    public SourceVersion getSupportedSourceVersion() {
+        return SourceVersion.RELEASE_8;
+    }
+}

@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+}
+
+sourceSets {
+    codegen {
+        java {
+            srcDir 'src/codegen/java'
+        }
+        compileClasspath += sourceSets.main.runtimeClasspath
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://files.minecraftforge.net/maven/' }
+}
+
+dependencies {
+    implementation "org.ow2.asm:asm:${asmVersion}"
+    implementation "org.ow2.asm:asm-tree:${asmTreeVersion}"
+    implementation "org.ow2.asm:asm-commons:${asmCommonsVersion}"
+    implementation "org.jetbrains:annotations:${annotationsVersion}"
+    compileOnly "net.fabricmc:sponge-mixin:${mixinVersion}"
+    compileOnly "com.google.guava:guava:${guavaVersion}"
+    compileOnly "com.googlecode.json-simple:json-simple:${jsonSimpleVersion}"
+    compileOnly "org.spigotmc:spigot-api:${spigotApiVersion}"
+    implementation "com.google.code.gson:gson:${gsonVersion}"
+    compileOnly "org.jspecify:jspecify:${jspecifyVersion}"
+    codegenImplementation "com.squareup:javapoet:${javapoetVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+}
