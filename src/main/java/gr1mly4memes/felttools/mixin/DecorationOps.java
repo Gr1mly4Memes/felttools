@@ -25,7 +25,7 @@ public interface DecorationOps {
      *
      * @return cancel handler, with type () -> &lt;target method return type&gt;
      *
-     * @apiNote A return statement <b>MUST</b> be followed after this call. When cases it may eliminate those returns,
+     * API note: A return statement <b>MUST</b> be followed after this call. When cases it may eliminate those returns,
      * {@link #blackhole()} shall be used:
      * <pre>
      * {@code
