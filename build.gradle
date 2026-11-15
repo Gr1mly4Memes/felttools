@@ -1,6 +1,9 @@
 plugins {
     id 'java'
+    id 'com.palantir.git-version' version '4.0.0'
 }
+
+version gitVersion()
 
 sourceSets {
     codegen {

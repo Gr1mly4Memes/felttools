@@ -35,6 +35,21 @@ Or as a git submodule / composite build if you want to hack on it locally.
 The mixin annotations and processors are picked up automatically through
 `META-INF/services/javax.annotation.processing.Processor` - no extra configuration needed.
 
+## Releasing
+
+Releases are fully automated via [semantic-release](https://semantic-release.gitbook.io/):
+
+1. Commit using [Conventional Commits](https://www.conventionalcommits.org/) - e.g.
+   `feat: ...` (minor), `fix: ...` (patch), `feat!:` / `BREAKING CHANGE:` (major).
+   Commits that don't match a type (e.g. `chore:`, `docs:`) don't trigger a release.
+2. Push to `master`.
+3. The `Release` GitHub Action bumps the version, creates a git tag and a GitHub Release.
+4. [JitPack](https://jitpack.io) builds the new tag automatically - no manual steps.
+
+The project version is derived from git tags via the
+[`com.palantir.git-version`](https://github.com/palantir/gradle-git-version) plugin, so the
+POM version always matches the tag JitPack serves.
+
 ## Requirements
 
 - Java 25
