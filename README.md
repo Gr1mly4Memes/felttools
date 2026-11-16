@@ -26,7 +26,7 @@ repositories {
     maven { url 'https://jitpack.io' }
 }
 dependencies {
-    implementation 'com.github.gr1mly4memes:felttools:v1.0.1'
+    implementation 'com.github.gr1mly4memes:felttools:v1.0.2'
 }
 ```
 

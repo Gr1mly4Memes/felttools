@@ -185,14 +185,6 @@ public class Decorator extends Injector {
     @Override
     protected void sanityCheck(Target target, List<InjectionPoint> injectionPoints) {
         super.sanityCheck(target, injectionPoints);
-        if (target.isStatic != isStatic) {
-            String msg = String.format(
-                    "static modifiers do not match: target is %s, decorator is %s",
-                    target.isStatic ? "static" : "not static",
-                    isStatic ? "static" : "not static"
-            );
-            throw new InvalidInjectionException(info, msg);
-        }
     }
 
     @Override
